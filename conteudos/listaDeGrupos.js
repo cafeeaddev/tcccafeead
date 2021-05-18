@@ -1,0 +1,460 @@
+//CRIANDO UMA VARIÁVEL COM A URL A QUAL AS REQUISIÇÕES AJAX DEVEM SER ENVIADAS
+var urlTemp = window.location.href.split('/view.php');
+var urlAjax = urlTemp[0] + '/acoesListaDeGrupos.php';
+
+function apenasNumeros(e) {
+    var focused = $(':focus');
+    if(focused.hasClass('apenasNumeros')){
+    if(e.keyCode === 13){
+        var focused = $(':focus');
+        if(focused.hasClass('notaGrupo')){
+            nota.atualiza(focused.data('tcc'), focused.data('group'), focused.data('type'), focused.val());
+        }
+        if(focused.hasClass('notaStage')){
+            notaStage.atualizaNota(focused.data('tcc'), focused.data('stage'), focused.data('group'), focused.val());
+        }
+    }
+    else if(((e.keyCode < 37) || (e.keyCode > 40))){
+
+        var focused = $(':focus');
+        var valor = focused.val();
+        if((e.keyCode !== 96 || e.keyCode !== 48)&& valor === '0.0'){
+            focused.val('');
+        }else{
+            var expression1 = /[^0-9]/g;
+            var expression2 = /^0*/;
+            valor = valor.replace(expression2, '');
+            valor = valor.replace(expression1, '');
+            while(valor.length < 3){
+                valor = '0'+valor;
+            }
+            var total = valor.length;
+
+            if(total >= 3){
+                var valor1 = valor.substring(0,total - 2);
+                var valor2 = valor.substring(total-2, total);
+                valor = valor1 + '.' + valor2;
+
+            }
+            focused.val(valor);
+        }
+        }
+    }
+}
+function iniciaCamposNumericos() {
+  if ($('.apenasNumeros').length > 0) {
+    $(document).keyup(apenasNumeros);
+  }
+}
+
+var alunos = new Object();
+
+alunos.iniciar = function(){
+    $("body").delegate(".estrelaVazia16", "click", function(){
+       var enrolid = $(this).data('enrolmentid');
+       popUp.abre("confirmaUploader","Uploader","Tem certeza de que deseja conceder a " + $("#uNome_" + enrolid).html() + " permissão para realizar uploads e submeter formulários?","não","sim","confirm","m", "verde", "bola", "",function(){alunos.definirUploader(enrolid);});
+    });
+    $("body").delegate(".estrelaCheia16","click", function(){
+        var enrolid = $(this).data('enrolmentid');
+        popUp.abre("cancelaUploader","Uploader","Tem certeza de que deseja remover a permissão de " + $("#uNome_" + enrolid).html() + " para realizar uploads e submeter formulários?","não","sim","confirm","m", "vermelho", "bola", "",function(){alunos.removerUploader(enrolid);});
+    });
+};
+alunos.definirUploader = function(idEnrol){
+    var form = {acao: 'confereUpload', idEnrol: idEnrol};
+    $.post(urlAjax, form, function(data){
+        if(data === '1'){
+            $("#botUp_" + idEnrol).removeClass('estrelaVazia16').addClass('estrelaCheia16');
+            popUp.fecha();
+        }
+    });
+
+};
+alunos.removerUploader = function(idEnrol){
+    var form = {acao: 'removeUpload', idEnrol: idEnrol};
+    $.post(urlAjax, form, function(data){
+        if(data === '1'){
+            $("#botUp_" + idEnrol).removeClass('estrelaCheia16').addClass('estrelaVazia16');
+            popUp.fecha();
+        }
+    });
+};
+
+var bemvindo = new Object();
+
+bemvindo.iniciar = function(){
+    bemvindo.telaInicial();
+    $('body').delegate('.boasVindas',"click", function(){
+        $("#fStatus").val($(this).data('status'));
+        filtros.filtrar();
+        popUp.fecha("boasvindas");
+    });
+};
+
+bemvindo.telaInicial = function(){
+
+
+    var total = new Array();
+    $('.groupContainer').each(function(){
+        var item = $(this);
+        var status = item.data('status');
+        if(total[status] === undefined){
+            total[status] = {n : 1, classname: item.data('classname')};
+        }else{
+            total[status].n++;
+        }
+    });
+    var html = '';
+    $.each(total, function(key, value){
+        if(value !== undefined){
+            var name = $(".s_" + key).html();
+            html += '<div class = "boasVindas ' +value.classname + '" data-status = "' + key + '">' + name +'<br>' + value.n +'</div>';
+
+        }
+    });
+    popUp.abre("boasvindas","Bem Vindo!",html,"não","sim","message","800px-300px", "branco", "bola");
+};
+
+var filtros = new Object();
+
+filtros.iniciar = function(){
+    $("#filtrar").on('click', function(e){
+        e.preventDefault();
+        filtros.filtrar();
+    });
+};
+filtros.filtrar = function(){
+
+    var status = $("#fStatus").val();
+    var nomeGrupo = $("#fNomeGrupo").val().toLowerCase();
+    var nomeAluno = $("#fNomeAluno").val().toLowerCase();
+    var nomeProfessor = ($("#fNomeProfessor").length > 0) ? $("#fNomeProfessor").val().toLowerCase() : '';
+
+    $('.groupContainer').each(function(){
+        var item = $(this);
+        var itemNome = item.data('nome').toLowerCase();
+        var itemProf = ($('#profNome_' + item.data('group')).length > 0)? $('#profNome_' + item.data('group')).html().toLowerCase() : '';
+
+        var cStatus = (status === '' || Number(item.data('status')) === Number(status))? 1 : 0;
+        var cNomeGrupo = (nomeGrupo === '' || itemNome.search(nomeGrupo) >= 0)? 1: 0 ;
+        var cNomeProf = (itemProf === '' || itemProf.search(nomeProfessor) >= 0)? 1: 0 ;
+        var cNomeUsuario = 0;
+        if(nomeAluno === ''){
+            cNomeUsuario = 1;
+        }else{
+
+            $("#alunos_" + item.data('group') + ' a').each(function(){
+                var nomeU = $(this).html().toLowerCase();
+                if(nomeU.search(nomeAluno) >= 0){
+                    cNomeUsuario = 1;
+                }
+            });
+        }
+
+        if(cStatus === 1 && cNomeGrupo === 1 && cNomeUsuario === 1 && cNomeProf === 1){
+            item.slideDown();
+        }else{
+            item.slideUp();
+        }
+    });
+
+};
+
+var formulario = new Object();
+
+formulario.iniciar = function(){
+    $("body").delegate('.icoformConfirm','click', function(){
+        if($(this).data("per") === 'coord' ){
+            formulario.avisoCancela($(this).data('group'), $(this).data('formtype'));
+        }
+    });
+
+	$("body").delegate('.icoformNaoAceito','click', function(){
+        if($(this).data("per") === 'coord' || $(this).data("per") === 'prof' ){
+            formulario.avisoCancela($(this).data('group'), $(this).data('formtype'));
+        }
+    });
+
+    $("body").delegate('.icoformConfirmMorto','click', function(){
+        formulario.avisoConfirma($(this).data('group'), $(this).data('formtype'));
+
+    });
+};
+formulario.cancelaItem = function(idGroup, idFormType){
+    var form = {acao: 'formCancelaItem',idTcc: $("#idTcc").val(), idGroup: idGroup, idFormType: idFormType};
+    $.post(urlAjax, form, function(data){
+        if(data === '1'){
+            $("#groupContainer_" + idGroup).removeClass('enviado').addClass('aguardandoAprovacao');
+            $("#bot_" + idGroup + "_" + idFormType).removeClass('icoformConfirm').addClass('icoformConfirmMorto');
+            popUp.fecha();
+            grupos.atualizaStatus(idGroup);
+        }
+    });
+};
+
+formulario.confirmaItem = function(idGroup, idFormType){
+    var form = {acao: 'formConfirmaItem',idTcc: $("#idTcc").val(), idGroup: idGroup, idFormType: idFormType};
+    $.post(urlAjax, form, function(data){
+        if(data === '1'){
+            $("#groupContainer_" + idGroup).removeClass('aguardandoAprovacao').addClass('enviado');
+            $("#bot_" + idGroup + "_" + idFormType).removeClass('icoformConfirmMorto').addClass('icoformConfirm');
+            popUp.fecha();
+            grupos.atualizaStatus(idGroup);
+        }
+    });
+};
+
+formulario.avisoCancela = function(idGroup, idFormType){
+    popUp.abre("cancelaForm","Cancelamento","Deseja desaprovar este item? Os alunos somente poderão enviar postagem quando todos itens forem aprovados.","não","sim","confirm","m", "vermelho", "bola", "",function(){formulario.cancelaItem(idGroup, idFormType);});
+};
+
+formulario.avisoConfirma = function(idGroup, idFormType){
+    popUp.abre("confirmaForm","Aprovação","Deseja confirmar este item?","não","sim","confirm","m", "verde", "bola", "",function(){formulario.confirmaItem(idGroup, idFormType);});
+};
+
+
+var grupos = new Object();
+
+grupos.iniciar = function(){
+    $('.groupContainer > table td:not(:last-child)').on("click", function(){
+        var group = $(this).parent().parent().parent().data('group');
+        if($("#groupDetalhes_" + group).css('display') !== 'block'){
+            $("#groupDetalhes_" + group).slideDown();
+        }else{
+            $("#groupDetalhes_" + group).slideUp();
+        }
+    });
+    grupos.stati = jQuery.parseJSON($("#groupStati").html());
+
+};
+
+grupos.atualizaStatus = function(idGroup){
+    var form = {acao: 'grupoVerificaStatus',idTcc: $("#idTcc").val(), idGroup: idGroup};
+    $.post(urlAjax, form, function(data){
+        grupos.mudaStatus(idGroup, data);
+        return(data);
+    });
+};
+grupos.mudaStatus = function(groupid, status){
+    $("#status_" + groupid).html(grupos.stati[status-1].name);
+    $("#groupContainer_" + groupid).attr('class', '').addClass('groupContainer').addClass(grupos.stati[status-1].classname);
+};
+
+var subCabecalho = new Object();
+
+var nota = new Object();
+
+nota.iniciar = function(){
+    $(".notaGrupo").on("blur", function(){
+        var clicado = $(this);
+        nota.atualiza(clicado.data('tcc'), clicado.data('group'), clicado.data('type'), clicado.data('banca'), clicado.data('postagem'), $(this).val());
+    });
+
+	$("select.notaGrupo").on("change", function(){
+        var clicado = $(this);
+        nota.atualiza(clicado.data('tcc'), clicado.data('group'), clicado.data('type'), clicado.data('banca'), clicado.data('postagem'), $(this).val());
+    });
+
+    $(".notaGrupo").on("click", function(){
+        var idSucesso = (Number($(this).data('type')) === 1)? '#sucessoNT_' + $(this).data('group') : '#sucessoNA_' + $(this).data('group');
+        $(idSucesso).css("display", 'none');
+    });
+    $(".fecharNotas").on("click", function(){
+        var campo = $(this);
+        var valor = ($("#nm_" +campo.data('group')).length > 0)? $("#nm_" +campo.data('group')).val() : $("#nt_" +campo.data('group')).val() ;
+        if(valor !== '' && valor !== '--'){
+            var html  = 'Esta ação irá conceder nota <b>' + valor + '</b> <br> para todos integrantes do grupo <b>' +$("#nomeGrupo_" + campo.data('group')).html() + '</b>.';
+                html += '<br>O status do grupo será alterado para "Finalizado" <br>e ele não será mais editável para os professores.';
+            popUp.abre("confirmaFechamento","Finalizar",html,"cancela","confirma","confirm","m", "verde", "bola", "",function(){
+                nota.fechar(campo.data('tcc'), campo.data('group'), valor);
+            });
+        }else{
+            var html = 'Para realizar o fechamento <br>é preciso que haja uma nota final';
+            popUp.abre("alertaFechamento","Fechamento",html,"não","sim","alert","m", "vermelho", "bola", "");
+        }
+    });
+    $(".abrirNotas").on("click", function(){
+
+        var campo = $(this);
+        var html  = 'Esta ação tornará disnponível <br> o lançamento de notas<br> para todos professores <br> do grupo <b>' +$("#nomeGrupo_" + campo.data('group')).html() + '</b>.';
+                html += '<br><br>O status do grupo será alterado<br> para "Em correção".';
+            popUp.abre("confirmaAbertura","Reabrir",html,"cancela","confirma","confirm","m", "verde", "bola", "",function(){
+                nota.abrir(campo.data('tcc'), campo.data('group'));
+            });
+
+    });
+};
+nota.atualiza = function(tcc, group, type, banca, postagem, valor){
+    var form = {acao: 'atualizaNota', tcc: tcc, group: group, type: type, banca:banca, postagem:postagem, valor: valor};
+
+    $.post(urlAjax, form, function(data){
+
+            var idSucesso = (Number(type) === 1)? '#sucessoNT_' + group : '#sucessoNA_' + group;
+            $(idSucesso).css("display", 'inline-block');
+
+            var nt = $("#nt_" + group).val();
+            var na = $("#na_" + group).val();
+            if(nt !== '--' && nt !== '' && na !== '--' && na !== ''){
+                $("#nm_" + group).val(Math.round((Number(nt) + Number(na)) / 2 * 100) / 100);
+            }else{
+                $("#nm_" + group).val('--');
+            }
+
+            if ( Number(type) === 1){
+
+            	 $.post(urlAjax,{acao: 'aguardandoBanca', groupid: group}, function(data){
+                 	console.log("RECEBEU " + data + " DE RESPOSTA");
+                      if( banca == 0 && postagem == 0 ){
+						grupos.mudaStatus(group, 7);
+					  }else{
+						grupos.mudaStatus(group, 6);
+					  }
+
+                 });
+
+            }
+
+    });
+};
+nota.fechar = function(tcc, group, valor){
+
+    var form = {acao: 'fecharNotas', tcc: tcc, group: group, valor: valor};
+    $.post(urlAjax, form, function(data){
+        var dados = $.parseJSON(data);
+        popUp.fecha("confirmaFechamento");
+        if(dados.status !== 'ok'){
+            popUp.abre("erroFechamento","ERRO",dados.mensagem,"OK","sim","alert","m", "vermelho", "bola", "");
+
+        }
+        grupos.atualizaStatus(group);
+        $("#nt_" + group + ", #na_" + group + ", #nm_" + group).attr("disabled", "disabled");
+    });
+
+};
+nota.abrir = function(tcc, group){
+
+    var form = {acao: 'abrirNotas', tcc: tcc, group: group};
+    $.post(urlAjax, form, function(data){ console.log(data);
+        var dados = $.parseJSON(data);
+        popUp.fecha("confirmaAbertura");
+        if(dados.status !== 'ok'){
+            popUp.abre("erroAbertura","ERRO",dados.mensagem,"OK","sim","alert","m", "vermelho", "bola", "");
+
+        }
+        grupos.atualizaStatus(group);
+        //$("#nt_" + group + ", #na_" + group + ", #nm_" + group).attr("disabled", "disabled");
+    });
+
+};
+
+var notaStage = new Object();
+
+notaStage.iniciar = function(){
+    $(".notaStage").on("blur", function(){
+        var clicado = $(this);
+        notaStage.atualizaNota(clicado.data('tcc'), clicado.data('stage'), clicado.data('group'), $(this).val());
+    });
+    $(".caixaDeNotasPost input").on("click", function(){
+        $("#sucesso_"+$(this).data('tcc')+"_"+$(this).data('stage')+"_"+$(this).data('group')).css("display", 'none');
+    });
+};
+notaStage.atualizaNota = function(tcc, stage, group, valor){
+    var form = {acao: 'atualizaStageGrade', tcc: tcc, stage: stage, group: group, valor: valor};
+    $.post(urlAjax, form, function(data){console.log(data)
+        if(data === '1'){
+            $("#sucesso_"+tcc+"_"+stage+"_"+group).css("display", 'inline-block');
+            var nNotas = 0;
+            var total = 0;
+            $("#groupContainer_" + group + ' .notaStage').each(function(){
+                if($(this).val() !== ''){
+                    nNotas++;
+                    total += Number($(this).val());
+                }
+
+            });
+            if($("#nt_" + group).length > 0){
+                var media = Math.round((total / nNotas)* 100) / 100;
+                $("#nt_" + group).val(media);
+                if($("#nt_" + group).val() !== '--' && $("#na_" + group).val() !== '--'){
+                    var na = Number($("#na_" + group).val());
+                    $("#nm_" + group).val(Math.round((media + na) / 2 * 100) / 100);
+                }
+            }
+        }
+    });
+};
+
+subCabecalho.iniciar = function(){
+    $(".subCabecalho").on("click", function(){
+        var bloco =  $("#" + $(this).data('block'));
+        if((bloco).css("display") === 'none'){
+            $(this).removeClass('fechado').addClass('aberto');
+            bloco.slideDown();
+        }else{
+            $(this).removeClass('aberto').addClass('fechado');
+            bloco.slideUp();
+        }
+    });
+};
+
+
+
+$("body").ready(function(){
+    alunos.iniciar();
+    formulario.iniciar();
+    grupos.iniciar();
+    subCabecalho.iniciar();
+    nota.iniciar();
+    notaStage.iniciar();
+    filtros.iniciar();
+    //bemvindo.iniciar();
+    iniciaCamposNumericos();
+
+    //OPERAÇÕES COM ARQUIVOS
+    $("body").delegate('.envios a',"click", function(){
+        var groupid = $(this).parent().parent().data('groupid');
+        var form = {acao: 'emCorrecao', groupid: groupid};
+        $.post(urlAjax, form, function(data){
+            if(data === '4'){
+                grupos.mudaStatus(groupid, 4);
+            }
+        });
+    });
+    $(".upload").on("change", function(e){
+        var groupid = $(this).data('groupid');
+        var stage = $(this).data('stage');
+        var files = e.target.files;
+        var formData = new FormData();
+        $.each(files, function(key, value)
+        {
+            formData.append(key, value);
+        });
+        arquivos.upload($("#idTcc").val(), groupid, stage, 'correcoes', formData);
+
+    });
+
+    $(".downloadProf").click(function(e){
+    	carregando.abre('download do arquivo');
+    	e.preventDefault();
+    	var link = $(this).attr("href");
+    	var groupid = $(this).attr("data-groupid");
+    	window.location.href = link;
+    	carregando.fecha();
+    	grupos.mudaStatus(groupid, 4);
+    });
+
+    $("body").delegate('.excluir',"click", function(){
+        var groupid = $(this).data('groupid');
+        var stage = $(this).data('stage');
+        var tipo = $(this).data('tipo');
+        var nome = $(this).data('nome');
+        var tccid = $("#idTcc").val();
+
+        var html = 'Tem certeza que deseja excluir o arquivo <br><strong>"' + nome + '"</strong>?<br> Esta ação não poderá ser revertida!';
+        popUp.abre("excluiArquivo","Excluir Arquivo", html,"não","sim","confirm","m", "vermelho", "bola", "",function(){
+            arquivos.excluir(tccid, groupid, stage, tipo, nome);
+        });
+    });
+$("#teste").on('click', function(){
+
+});
+});

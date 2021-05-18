@@ -1,0 +1,79 @@
+.titleObs {
+  display: none;
+}
+.conteudo .available{
+    background: #defdde;
+    padding: 10px;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.unavailable{
+ padding: 10px;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: rgb(254,163,167);
+}
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+ 
+/* 
+    Created on : 16/01/2015, 09:33:01
+    Author     : CafeEAD
+*/
+.form.blocoForms .l100{    margin-bottom: 80px!important;}
+/* PALETA */
+.grid {
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-family: Verdana, Arial; }
+
+.grid * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: all 0.1s; }
+
+.grid > div {
+  display: inline-block;
+  margin: 15px 0;
+  text-align: center;
+  vertical-align: top;
+  border: 0 none transparent;
+  font-family: inherit;
+  /*outline: 1px solid red;*/ }
+
+.l100 {
+  display: block;
+  width: 100%; }
+
+.l50 {
+  width: 50%; }
+
+.l33 {
+  width: 33%; }
+
+.gh1 {
+  height: 60px; }
+
+.gh2 {
+  height: 120px; }
+
+@media screen and (max-width: 400px) {
+  .l50, .l33 {
+    width: 100%; } }
+@media screen and (max-width: 600px) {
+  .l33 {
+    width: 50%; } }
+ 

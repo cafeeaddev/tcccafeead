@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/tcccafeead/db" VERSION="1" COMMENT="XMLDB file for Moodle mod/tcccafeead" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+    <TABLES>
+        <TABLE NAME="tcccafeead" NEXT="tcccafeead_chat" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="course" COMMENT="" />
+                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="true" SEQUENCE="false" PREVIOUS="course" NEXT="intro" COMMENT="" />
+                <FIELD NAME="intro" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" NEXT="introformat" COMMENT="" />
+                <FIELD NAME="introformat" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="intro" NEXT="banca" COMMENT="" />
+                <FIELD NAME="banca" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="introformat" NEXT="importfrom" COMMENT="" />
+                <FIELD NAME="importfrom" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="banca" NEXT="importfromassign" COMMENT="" />
+                <FIELD NAME="importfromassign" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="importfrom" NEXT="timecreated" COMMENT="" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="importfrom" NEXT="timemodified" COMMENT="" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timecreated" NEXT="grade" COMMENT="" />
+                <FIELD NAME="grade" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="timemodified" NEXT="levelid" COMMENT="" />
+                <FIELD NAME="levelid" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="grade" NEXT="stagegrade" COMMENT="" />
+                <FIELD NAME="stagegrade" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="levelid" NEXT="timestart" COMMENT="" />
+                <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="stagegrade" NEXT="timeend" COMMENT="" />
+                <FIELD NAME="timeend" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timestart" NEXT="grade_banca" COMMENT="" />
+				<FIELD NAME="grade_banca" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="timeend"  COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_chat" PREVIOUS="tcccafeead" NEXT="tcccafeead_chat_history" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="receiverid" COMMENT="" />
+                <FIELD NAME="receiverid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="senderid" COMMENT="" />
+                <FIELD NAME="senderid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="receiverid" NEXT="timesend" COMMENT="" />
+                <FIELD NAME="timesend" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="senderid" NEXT="timeseen" COMMENT="" />
+                <FIELD NAME="timeseen" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timesend" NEXT="message" COMMENT="" />
+                <FIELD NAME="message" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="timeseen" NEXT="institution" COMMENT="" />
+                <FIELD NAME="institution" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="message" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_chat_extra_member" PREVIOUS="tcccafeead_chat" NEXT="tcccafeead_chat_history" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="iduser" COMMENT="" />
+                <FIELD NAME="iduser" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="iduser" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="tccid" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_chat_history" PREVIOUS="tcccafeead_chat_extra_member" NEXT="tcccafeead_chat_text" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="receiverid" COMMENT="" />
+                <FIELD NAME="receiverid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="senderid" COMMENT="" />
+                <FIELD NAME="senderid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="receiverid" NEXT="timesend" COMMENT="" />
+                <FIELD NAME="timesend" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="senderid" NEXT="timeseen" COMMENT="" />
+                <FIELD NAME="timeseen" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timesend" NEXT="message" COMMENT="" />
+                <FIELD NAME="message" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timeseen" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_chat_text" PREVIOUS="tcccafeead_chat_history" NEXT="tcccafeead_form" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="short_text" COMMENT="" />
+                <FIELD NAME="short_text" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="full_text" COMMENT="" />
+                <FIELD NAME="full_text" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="short_text" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_form" PREVIOUS="tcccafeead_chat_text" NEXT="tcccafeead_form_type" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="formtypeid" COMMENT="" />
+                <FIELD NAME="formtypeid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_form_type" PREVIOUS="tcccafeead_form" NEXT="tcccafeead_grade" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="input" COMMENT="" />
+                <FIELD NAME="input" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" NEXT="axtable" COMMENT="" />
+                <FIELD NAME="axtable" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="input" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_grade" PREVIOUS="tcccafeead_form_type" NEXT="tcccafeead_grade_type" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="value" COMMENT="" />
+                <FIELD NAME="value" TYPE="text" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="value_banca" COMMENT="" />
+				<FIELD NAME="value_banca" TYPE="text" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="value_banca" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="value" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="type" COMMENT="" />
+                <FIELD NAME="type" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="timecreated" COMMENT="" />
+                <FIELD NAME="tema" TYPE="text" LENGTH="255" NOTNULL="false" SEQUENCE="false" PREVIOUS="type" NEXT="timecreated" COMMENT="" />
+                <FIELD NAME="data" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timecreated" COMMENT="" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="type" NEXT="timemodified" COMMENT="" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timecreated" NEXT="timecreated_banca" COMMENT="" />
+				<FIELD NAME="timecreated_banca" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timemodified" NEXT="timemodified_banca" COMMENT="" />
+                <FIELD NAME="timemodified_banca" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timecreated_banca" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_grade_type" PREVIOUS="tcccafeead_grade" NEXT="tcccafeead_group" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group" PREVIOUS="tcccafeead_grade_type" NEXT="tcccafeead_group_enrolment" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="id_teacher" COMMENT="" />
+                <FIELD NAME="id_teacher" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="active" COMMENT="" />
+                <FIELD NAME="active" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id_teacher" NEXT="status" COMMENT="" />
+                <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="active" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_enrolment" PREVIOUS="tcccafeead_group" NEXT="tcccafeead_group_form" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="id_user" COMMENT="" />
+                <FIELD NAME="id_user" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id_user" NEXT="time_enrol" COMMENT="" />
+                <FIELD NAME="time_enrol" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="active" COMMENT="" />
+                <FIELD NAME="active" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="time_enrol" NEXT="uploader" COMMENT="" />
+                <FIELD NAME="uploader" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="active" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_form" PREVIOUS="tcccafeead_group_enrolment" NEXT="tcccafeead_group_form_status" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="formtypeid" COMMENT="" />
+                <FIELD NAME="formtypeid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="status" COMMENT="" />
+                <FIELD NAME="status" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="formtypeid" NEXT="content" COMMENT="" />
+                <FIELD NAME="content" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="status" NEXT="timesubmission" COMMENT="" />
+                <FIELD NAME="timesubmission" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="content" NEXT="timelaststatus" COMMENT="" />
+                <FIELD NAME="timelaststatus" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timesubmission" NEXT="comentario" COMMENT="" />
+				<FIELD NAME="comentario" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="timelaststatus" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_form_status" PREVIOUS="tcccafeead_group_form" NEXT="tcccafeead_group_status" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="description" COMMENT="" />
+                <FIELD NAME="description" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_status" PREVIOUS="tcccafeead_group_form_status" NEXT="tcccafeead_group_status_log" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="description" COMMENT="" />
+                <FIELD NAME="description" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" NEXT="classname" COMMENT="" />
+                <FIELD NAME="classname" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="description" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_status_log" PREVIOUS="tcccafeead_group_status" NEXT="tcccafeead_group_tcc" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="courseid" COMMENT="" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="courseid" NEXT="statusid" COMMENT="" />
+                <FIELD NAME="statusid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="time" COMMENT="" />
+                <FIELD NAME="time" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="statusid" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_group_tcc" PREVIOUS="tcccafeead_group_status_log" NEXT="tcccafeead_level" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="courseid" COMMENT="" />
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="courseid" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_level" PREVIOUS="tcccafeead_group_tcc" NEXT="tcccafeead_research_lines" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_research_lines" PREVIOUS="tcccafeead_level" NEXT="tcccafeead_stage" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_stage" PREVIOUS="tcccafeead_research_lines" NEXT="tcccafeead_stage_grade" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="name" COMMENT="" />
+                <FIELD NAME="name" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="description" COMMENT="" />
+                <FIELD NAME="description" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="name" NEXT="timestart" COMMENT="" />
+                <FIELD NAME="timestart" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="description" NEXT="timeend" COMMENT="" />
+                <FIELD NAME="timeend" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timestart" NEXT="files" COMMENT="" />
+                <FIELD NAME="files" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timeend" NEXT="files" COMMENT="" />
+				<FIELD NAME="maxgrade" TYPE="text" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="files"  COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_stage_grade" PREVIOUS="tcccafeead_stage" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="id" NEXT="stageid" COMMENT="" />
+                <FIELD NAME="stageid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="tccid" NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="stageid" NEXT="value" COMMENT="" />
+                <FIELD NAME="value" TYPE="text" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="groupid" NEXT="comment" COMMENT="" />
+                <FIELD NAME="comment" TYPE="text" LENGTH="65535" NOTNULL="false" SEQUENCE="false" PREVIOUS="value" NEXT="timecreated" COMMENT="" />
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="comment" NEXT="timemodified" COMMENT="" />
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" PREVIOUS="timecreated" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_protocolo" PREVIOUS="tcccafeead_stage_grade"  COMMENT="" >
+          <FIELDS>
+              <FIELD NAME="id"              TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="true"  NEXT="userid"              COMMENT="" />
+              <FIELD NAME="userid"          TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="id"              NEXT="tccid" COMMENT="" />
+              <FIELD NAME="tccid"           TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="userid"          NEXT="groupid" COMMENT="" />
+              <FIELD NAME="groupid"         TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="tccid"           NEXT="participantes" COMMENT="" />
+              <FIELD NAME="participantes"   TYPE="text" LENGTH="255" NOTNULL="true"   SEQUENCE="false" PREVIOUS="groupid"         NEXT="tipo_protocolo" COMMENT="" />
+              <FIELD NAME="tipo_protocolo"  TYPE="text" LENGTH="255" NOTNULL="true"   SEQUENCE="false" PREVIOUS="participantes"   NEXT="nome_arquivo" COMMENT="" />
+              <FIELD NAME="nome_arquivo"    TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="tipo_protocolo"  NEXT="caminho_arquivo" COMMENT="" />
+              <FIELD NAME="caminho_arquivo" TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="nome_arquivo"    NEXT="status_api" COMMENT="" />
+              <FIELD NAME="status_api"      TYPE="int"  LENGTH="10"  NOTNULL="false"  SEQUENCE="false" PREVIOUS="nome_arquivo"    NEXT="mensagem_api" COMMENT="" />
+              <FIELD NAME="mensagem_api"    TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="tipo_protocolo"  NEXT="timecreated" COMMENT="" />
+              <FIELD NAME="acao"            TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="mensagem_api"  NEXT="status_acao" COMMENT="" />
+              <FIELD NAME="status_acao"     TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="acao"          NEXT="timecreated" COMMENT="" />
+              <FIELD NAME="timecreated"     TYPE="int"  LENGTH="10"  NOTNULL="false"  SEQUENCE="false" PREVIOUS="mensagem_api"    NEXT="timemodified" COMMENT="" />
+              <FIELD NAME="timemodified"    TYPE="int"  LENGTH="10"  NOTNULL="false"  SEQUENCE="false" PREVIOUS="timecreated" COMMENT="" />
+          </FIELDS>
+          <KEYS>
+              <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+          </KEYS>
+        </TABLE>
+        <TABLE NAME="tcccafeead_logs_sistema" PREVIOUS="tcccafeead_protocolo" COMMENT="" >
+            <FIELDS>
+                <FIELD NAME="id"              TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="true"  NEXT="userid"              COMMENT="" />
+                <FIELD NAME="userid"          TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="id"              NEXT="tccid" COMMENT="" />
+                <FIELD NAME="tccid"           TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="userid"          NEXT="groupid" COMMENT="" />
+                <FIELD NAME="groupid"         TYPE="int"  LENGTH="10"  NOTNULL="true"   SEQUENCE="false" PREVIOUS="tccid"           NEXT="tipo_log" COMMENT="" />
+                <FIELD NAME="tipo_log"        TYPE="text" LENGTH="255" NOTNULL="true"   SEQUENCE="false" PREVIOUS="groupid"         NEXT="acao" COMMENT="" />
+                <FIELD NAME="acao"            TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="tipo_log"        NEXT="nome_arquivo" COMMENT="" />
+                <FIELD NAME="nome_arquivo"    TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="acao"            NEXT="caminho_arquivo" COMMENT="" />
+                <FIELD NAME="caminho_arquivo" TYPE="text" LENGTH="255" NOTNULL="false"  SEQUENCE="false" PREVIOUS="nome_arquivo"    NEXT="timecreated" COMMENT="" />
+                <FIELD NAME="timecreated"     TYPE="int"  LENGTH="10"  NOTNULL="false"  SEQUENCE="false" PREVIOUS="mensagem_api"    NEXT="timemodified" COMMENT="" />
+                <FIELD NAME="timemodified"    TYPE="int"  LENGTH="10"  NOTNULL="false"  SEQUENCE="false" PREVIOUS="timecreated" COMMENT="" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>

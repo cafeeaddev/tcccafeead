@@ -1,0 +1,91 @@
+/* 
+    Created on : 16/01/2015, 09:33:01
+    Author     : CafeEAD
+*/
+
+#listaAlunos{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+#listaAlunos td, #listaAlunos th{
+    padding: 10px 5px;
+    color: #000;
+    text-align: center;
+}
+#listaAlunos th{
+    background-color: #f3f3f3;
+    font-weight: normal;
+}
+#listaAlunos input, #listaAlunos select{
+    width: 100%;
+    background-color: #fff;
+    border: 2px solid #ccc;
+}
+.aluno{
+   
+}
+.aluno td{
+    margin: 10px 0;
+}
+.reprovado{
+    background-color:#f6c0bb;
+}
+.reprovado td:nth-child(1), .reprovado td:nth-last-child(-n+1) {
+    background-color: #B22617;
+}
+.aprovado{
+    background-color: #a4f19c;
+}
+.aprovado td:nth-child(1), .aprovado td:nth-last-child(-n+1) {
+    background-color: #1F9014;
+}
+.dependecia{
+    background-color: #f6e9bf;
+}
+.dependecia td:nth-child(1), .dependecia td:nth-last-child(-n+1) {
+    background-color: #AE8916;
+}
+.naoFinalizado{
+    background-color: #f3f3f3;
+}
+.naoFinalizado td:nth-child(1), .naoFinalizado td:nth-last-child(-n+1) {
+    background-color: #ccc;
+}
+.ico16{
+    display: inline-block;
+    width:16px;
+    height:16px;
+    
+}
+.lupa32{
+    background-image: url("img/icones/lupa.svg");
+    background-size: 100% 100%;
+}
+.listaGrupos{
+    margin: 5px;
+}
+.listaGrupos table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.listaGrupos table td:nth-child(3){
+    width: 10%;
+}
+.listaGrupos table td:nth-child(1), .listaGrupos table td:nth-child(2){
+    width: 45%;
+}
+.listaGrupos td{
+    padding: 10px 5px;
+    color: #000;
+    text-align: center;
+}
+.listaGrupos th{
+    width: 50%;
+    padding: 10px 5px;
+    color: #000;
+    text-align: center;
+    font-weight: normal;
+    background-color: #f3f3f3;
+}

@@ -1,0 +1,126 @@
+.mgCalendarioBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999; }
+
+.mgCalendario {
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 350px;
+  height: 430px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  margin: 0;
+  font-family: Verdana, Arial;
+  padding: 5px;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  z-index: 10000; }
+
+.mgCalendario * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+.mgCalendario table {
+  width: 100%;
+  text-align: center;
+  border-spacing: 0; }
+
+.mgCalendario tbody:nth-child(1) td {
+  position: relative;
+  padding: 5px;
+  text-align: center; }
+
+.mgCalendario tbody:nth-child(1) td:nth-child(1n) {
+  cursor: pointer; }
+
+.mgCalendario tbody:nth-child(1) td:nth-child(2) {
+  cursor: default; }
+
+.mgCalendario tbody:nth-child(2) td {
+  width: 14.2%;
+  padding: 10px 5px;
+  text-align: center;
+  cursor: default; }
+
+.mgCalendario tbody:nth-child(3) td {
+  height: 45px;
+  border: 0 none;
+  text-align: center; }
+
+.mgVazio {
+  background-color: #f3f3f3;
+  color: #aaa; }
+
+.mgDia {
+  border-radius: 50%;
+  cursor: pointer; }
+
+.mgDia:hover {
+  background-color: #8aaad5;
+  transform: scale(1.2, 1.2);
+  transition: transform 0.2s; }
+
+.mgDia:nth-child(6n+1):hover {
+  background-color: orange; }
+
+.mgDiaHoje {
+  background-color: #ecea78; }
+
+.mgDiaSelecionado {
+  background-color: #8aaad5; }
+
+.mgCalendario > div button {
+  display: inline-block;
+  width: 33.33%;
+  height: 50px;
+  line-height: 50px;
+  margin: 6px 0;
+  font-size: 1.1em;
+  border: 0 none transparent;
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer; }
+
+.mgCalendario > div button:hover {
+  background-color: #8aaad5; }
+
+.mgCalendario > div:nth-child(2) {
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center; }
+
+.mgCalendario > div:nth-child(2) input[type="button"] {
+  width: 35%;
+  min-width: 110px;
+  padding: 10px;
+  margin: 5px 5%;
+  background-color: #8aaad5;
+  background-image: none;
+  text-shadow: none;
+  border: 0 none transparent;
+  border-radius: 2px;
+  cursor: pointer; }
+
+.mgCalendario > div:nth-child(2) input[type="button"]:hover {
+  transform: scale(1.1, 1.1);
+  transition: transform 0.2s; }
+
+.mgCalendario > div:nth-child(2) input[type="button"]:focus {
+  outline: 0 none; }
+
+/*# sourceMappingURL=inputDate.css.map */

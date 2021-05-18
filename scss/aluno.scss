@@ -1,0 +1,275 @@
+@import 'cores';
+@import 'mixinsPadrao';
+
+.blocoForms{
+    
+    margin: 10px 0;
+    padding: 30px;
+    border: medium none;
+    box-shadow: 0px 0px 10px #ccc;
+    background-color: transparent;
+}
+#boxNotas{
+ 
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;   
+}
+.boxInfo{
+    margin: 10px 0;
+}
+.form .formTitle{
+    margin: 0px 0 20px 0;
+    padding: 0 5px;
+    font-size: 28px; 
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    border-style: none;
+}
+.grid h3{
+    margin: 0 5px;
+    font-size: 14px; 
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+input[type='file']{
+    display:none;
+}
+input[type='file'] + label{
+    display:block;
+    width: 16px;
+    height: 16px;
+    background-image: url("img/icones/uploadBranco.svg");
+    background-size: 100% 100%; 
+    cursor: pointer;
+}
+.groupNome{
+   
+    background-color: transparent;
+    color: #333;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.conteudo .boxInfo.names{
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.conteudo .boxInfo.names tr{
+
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    border-right: 1px solid #f2f2f2;
+    padding-right: 10px;
+}
+.conteudo .boxInfo.names tr:last-child{
+    border-right:medium none;
+}
+.conteudo .boxInfo.names th{
+    display: block;
+    
+}
+.coments{
+    
+    padding: 10px;
+}
+.coments h4{
+    font-size:12px;
+}
+.correcao{
+    font-size:10px;
+}
+.ico16{
+    display: inline-block;
+    width:16px;
+    height:16px;
+}
+.ico32{
+    display: inline-block;
+    width:32px;
+    height:32px;
+}
+.formConfirm{
+    margin: 5px;
+    background-image: url("img/icones/confirmaForm.svg");
+    background-size: 100% 100%;
+    float: right;
+    vertical-align: middle;
+}
+.formConfirmado{
+    min-height: 60px;
+    margin: 0px;
+    padding: 10px;
+    background-color: #e8fbe8;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+    border: 1px solid #fff;
+    border-radius: 2px;
+}
+.formConfirmado p{
+    display: inline-block;
+    padding: 10px 0 0 0;
+}
+.chatAtualizado{
+    background-image: url("img/icones/chat1.svg");
+       background-color: #999;
+    padding: 20px;
+    background-size: 20px auto!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50px;
+}
+.chatPendente{
+
+    background-image: url("img/icones/chat2.svg");
+      background-color: #999;
+    padding: 20px;
+    background-size: 20px auto!important;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50px;
+}
+.estrelaCheia{
+    background-image: url("img/icones/estrelaCheiaVerde.svg");
+    background-size: 100% 100%;
+    vertical-align: -3px;
+}
+.estrelaVazia{
+    background-image: url("img/icones/estrelaVaziaVerde.svg");
+    background-size: 100% 100%;
+    vertical-align: -3px;
+}
+
+.menuPostagens{
+    width: 100%;
+    margin: 10px 0 0 0;
+    background-color: #777;
+    color: #fff;
+}
+.menuHerdados{
+    width: 100%;
+    margin: 10px 0 0 0;
+    background-color: #898989;
+    color: #fff;
+}
+.menuPostagens td, .menuHerdados td{
+    width: 1px;
+    padding: 10px;
+    cursor: pointer;
+}
+.menuPostagens td:hover{
+    background-color: #333;
+}
+.menuHerdados td:hover{
+    background-color: #333;
+}
+.menuPostagens .sSelecionado{
+    background-color: #333;
+}
+.menuHerdados .sSelecionado{
+    background-color: #606060;
+}
+.boxPostagens{
+    @include boxsizing(border-box);
+    width: 100%;
+    color: #fff;
+    overflow-x: hidden;
+    background-color: #333;
+    border-radius: 0px 0 10px 10px;
+}
+.boxHerdados{
+    @include boxsizing(border-box);
+    width: 100%;
+    color: #fff;
+    overflow-x: hidden;
+    background-color: #606060;
+}
+.boxHerdados div{
+    background-color: transparent !important;
+}
+.boxPostagens table, .boxHerdados table{
+    
+    width: 100%;
+    table-layout: fixed;
+}
+.boxHerdadosTarefa{
+    @include boxsizing(border-box);
+    width: 100%;
+    padding: 20px;
+    color: #fff;
+    overflow-x: hidden;
+    background-color: #606060;
+}
+.boxHerdadosTarefa a{
+    color: #fff;
+}
+.boxPostagens .postagem, .boxHerdados .postagem{
+    display: table-cell;
+    @include boxsizing(border-box);
+    width: 1%;
+    vertical-align: top;
+    background-color: transparent;
+}
+.boxPostagens .deslizante, .boxHerdados .deslizante{
+    position: relative;
+}
+.boxPostagens .pasta, .boxHerdados .pasta{
+    display: inline-block;
+    @include boxsizing(border-box);
+    vertical-align: top;
+    padding: 5px;
+    width: 49%;
+    max-width: 49%;
+    overflow-x: hidden;
+    box-shadow: none;
+}
+.boxPostagens .pasta ul, .boxHerdados .pasta ul{
+    padding: 2px;
+    list-style-type: none;
+    list-style-position: inside;
+}
+.boxPostagens .pasta table, .boxHerdados .pasta table{
+    margin: 0;
+    vertical-align: top;
+}
+.boxPostagens .postagem a, .boxHerdados .postagem a{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+}
+.boxPostagens .postagem a:hover{
+    text-decoration: underline;
+}
+.boxPostagens .correcoes, .boxPostagens .postagens{
+    width: calc(100% - 5px);
+    max-width: calc(100% - 5px);
+    margin: 0;
+    border-width:1px;
+    border-style: solid none none none;
+    border-color: rgba(255,255,255, 0.4);
+    overflow-x:hidden;
+}
+.boxPostagens .correcoes li, .boxPostagens .postagens li{
+    display: block;
+    max-width: 100%;
+    padding: 5px;
+    list-style-type: none;
+    border-width:1px;
+    border-style: none solid solid solid;
+    border-color: rgba(255,255,255, 0.4);
+    overflow-x:hidden;
+}
+.boxPostagens .correcoes li:nth-child(even), .boxPostagens .postagens li:nth-child(even){
+    background-color: rgba(255,255,255, 0.05);
+}
+.boxPostagens .expiradoPendente{
+    background-color: #b73f3c;
+}
+.boxPostagens .postagemInfo{
+    display: block;
+    text-align: center;
+    box-shadow: none;
+}
+

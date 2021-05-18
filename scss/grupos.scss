@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+ 
+
+//PALETA
+@import 'cores';
+@import 'mixinsPadrao';
+
+#bots{
+    width: 20%;
+}
+#groups{
+    width: 40%;
+    border: 1px solid #ccc;
+}
+#tccGroups{
+    width: 40%;
+    border: 1px solid #ccc;
+}
+#tccGroups div, #groups div{
+    margin: 2px 0;
+    padding: 3px;
+    cursor: pointer;
+}
+.box{
+    display: inline-block;
+    box-sizing: border-box;
+    min-height: 300px;
+    vertical-align: top;
+    margin: 0;
+    padding: 5px;
+}
+.bot{
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.selecionado{
+    border: 1px solid #81c6e2;
+    background-color: #d8f2fc;
+}

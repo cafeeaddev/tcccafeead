@@ -1,0 +1,55 @@
+.botaoQuadrado{
+    display: table;
+    width: calc(100% - 10px);
+    height: 60px;
+    margin: 10px;
+    vertical-align: middle;
+    color: #fff;
+    text-decoration: none;
+}
+.botaoQuadrado:visited, .botaoQuadrado:hover, .botaoQuadrado p{
+    color: #fff;
+    text-decoration: none;
+}
+#menuPrincipal #bConfigurar{display:none;}
+.botaoQuadrado p{
+    display: table-cell;
+    height: 100%;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#bConfigurar{
+    background-color: #0c5a0b;
+}
+#bCorrigir{
+	 
+	background-color: #008f4b; 
+	-webkit-transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+ 
+#bEnviar:hover {
+    background-color: #007979;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+#bCorrigir:hover {
+    background-color: #087315;
+    -webkit-transition: background-color 0.2s;
+    -moz-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+ 
+#bEnviar{
+	 
+	background-color: #12A5A5;
+	-webkit-transition: background-color 0.2s;
+	-moz-transition: background-color 0.2s;
+	transition: background-color 0.2s; 
+}
+#menuPrincipal{
+    margin-bottom: 20px;
+}

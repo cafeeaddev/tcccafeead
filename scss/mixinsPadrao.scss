@@ -1,0 +1,14 @@
+
+@mixin selectable($param) {
+    -webkit-touch-callout: $param;
+    -webkit-user-select: $param;
+    -khtml-user-select: $param;
+    -moz-user-select: $param;
+    -ms-user-select: $param;
+    user-select: $param;
+}
+@mixin boxsizing($param){
+    -webkit-box-sizing: $param;
+    -moz-box-sizing: $param;
+    box-sizing: $param;
+}

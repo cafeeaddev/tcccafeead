@@ -1,0 +1,178 @@
+$corBorda: #1c8113;
+$corBotaoEnvia: #99da94;
+
+.chatBox{
+    min-height: 100%;
+}
+.chatBox > div:nth-child(1){
+    height: 390px;
+    min-height: 390px;
+    border-style: none;
+    text-align: left;
+    padding: 5px;
+    overflow: auto;
+}
+.chatBox > div:nth-child(2){
+    height: 45px;
+    text-align: left;
+    padding: 5px;
+}
+.preBot{
+    display: inline-block;
+    width: 10%;
+}
+.listaPreDef{
+    display: none;
+    top: -205px;
+    position: relative;
+    width: 500px;
+    height: 200px;
+    background-color: #fff;;
+    box-shadow: 0 2px 8px rgba(0,0,0, 0.6);
+    overflow: auto;
+}
+.listaPreDef div{
+    padding: 10px;
+}
+.listaPreDef div:hover{
+    background-color: #f3f3f3;
+}
+.chatBox > div:nth-child(2) textarea{
+   width: 90%;
+    height: 40px;
+    padding: 5px;
+    vertical-align: middle;
+    border-width: 1px;
+    border-style: solid none solid solid;
+    border-color: transparent;
+    background: #f2f2f2;
+    border-radius:10px;
+}
+.chatBox > div:nth-child(2) textarea:focus{
+    outline: 0 none;
+}
+.chatBox > div:nth-child(2) textarea:disabled{
+    background-color: #fff;
+}
+.chatBox > div:nth-child(2) button{
+      width: 10%;
+    height: 40px;
+    padding: 10px;
+    font-size: 11px;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.chatLinha{
+   display: block;
+   margin: 3px !important;
+   padding: 2px !important;
+}
+.chatLinha div:nth-child(1){
+  font-size: 0.6em;
+   
+  color: #999; 
+  margin-bottom: 5px;
+   
+}
+.chatLinha div:nth-child(1) span{
+  color: #ccc;
+}
+.chatLinha div:nth-child(2){
+  color: #333;
+}
+.chatMinhaMensagem{
+    text-align: right;
+}
+.chatInst{
+  background-color: #f2f2f2;
+    padding: 10px!important;
+}
+.enviaM{
+    height: 33px;
+    line-height: 90%;
+    padding: 0;
+    vertical-align: middle;
+    font-size: 0.9em;
+    background-color: $corBotaoEnvia;
+    border-width: 1px;
+    border-style: solid solid solid none;
+    border-color: $corBorda;
+    
+  	cursor: pointer;
+	-webkit-transition: background-color 0.3s;
+	-moz-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+   
+.enviaM:hover {
+	color: #fff;
+	background-color: #00753D;
+	-webkit-transition: background-color 0.3s;
+	-moz-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+}
+.enviaM:hover span {
+	color: #fff;
+}
+.enviaM span{
+    line-height: 60%;
+    font-size: 0.8em;
+}
+
+.chatCarregando{
+    display:block;
+    width: 100%;
+    height: 100%;
+    padding: 30% 0 0 0;
+    font-size: 1.4em;
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    animation: piscaTexto 2s infinite;
+    -webkit-animation: piscaTexto 2s infinite;
+    -moz-animation: piscaTexto 2s infinite;
+    
+}
+.chatBolha{
+    position: relative;
+    top: -20px;
+    left: -17px;
+    padding: 3px;
+    font-size: 0.7em;
+    color: #fff;
+    border-radius: 5px;
+    background-color: red;
+    box-shadow: 3px 3px 5px rgba(0,0,0, 0.5);
+    z-index: 2;
+}
+.chatAtu{
+  vertical-align: middle;
+    height: 30px;
+    background-image: url(img/icones/chat1.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #09da9c;
+    background-size: 15px auto;
+    cursor: pointer;
+    width: 30px;
+    border-radius: 50px;
+}
+.chatPendente{
+
+    background-image: url("img/icones/chat2.svg");
+   
+    background-size: 100% 100%; 
+}
+
+@-webkit-keyframes piscaTexto {
+  50%{color: #000; font-size:1.4em; }
+  75%{ color: green; font-size:1.5em; }
+  100%{}
+}
+@-moz-keyframes piscaTexto{
+  0%{ transform: scale(0.001,0.001)  }
+  50%{transform: scale(1.1,1.1) }
+    100%{opacity: 1;}
+}

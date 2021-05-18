@@ -1,0 +1,479 @@
+/* 
+    Created on : 16/01/2015, 09:33:01
+    Author     : CafeEAD
+*/
+
+//PALETA
+@import 'cores';
+@import 'mixinsPadrao';
+
+
+input[type='file']{
+    display:none;
+    
+    
+}
+input[type='file'] + label{
+        display: block;
+    width: 16px;
+    background: #ccc;
+    padding: 15px;
+    background-image: url(img/icones/uploadBranco.svg);
+    background-size: 15px auto;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50px;
+}
+.imprimirNotas{display:none!important;}
+.ico16{
+    display: inline-block;
+    width:16px;
+    height:16px;
+    cursor: pointer;
+}
+.ico32{
+    display: inline-block;
+    width:32px;
+    height:32px;
+    cursor: pointer;
+}
+.icoUpload{
+    background-image: url("img/icones/uploadBranco.svg");
+    background-size: 100% 100%; 
+}
+.chatAtualizado{
+    background-image: url("img/icones/chat1.svg");
+    background-size: 100% 100%; 
+}
+.chatPendente{
+    background-image: url("img/icones/chat2.svg");
+    background-size: 100% 100%; 
+}
+.excluir{
+    background-image: url("img/icones/excluirBranco.svg");
+    background-size: 100% 100%;
+}
+.estrelaCheia16{
+    background-image: url("img/icones/estrelaCheiaBranca.svg");
+    background-size: 100% 100%;
+}
+.estrelaVazia16{
+    background-image: url("img/icones/estrelaVaziaBranca.svg");
+    background-size: 100% 100%;
+}
+.lupa{
+    background-image: url("img/icones/lupa.svg");
+    background-size: 100% 100%;
+}
+.icoformConfirm{
+    margin: 5px;
+    background-image: url("img/icones/confirmaForm.svg");
+    background-size: 100% 100%;
+}
+.icoformCancela{
+    margin: 5px;
+    background-image: url("img/icones/cancelaForm.svg");
+    background-size: 100% 100%;
+}
+.icoformConfirmMorto{
+    margin: 5px;
+    background-image: url("img/icones/confirmaFormMorto.svg");
+    background-size: 100% 100%;
+    cursor:pointer;
+}
+.icoformCancelaMorto{
+    margin: 5px;
+    background-image: url("img/icones/cancelaFormMorto.svg");
+    background-size: 100% 100%;
+    cursor:pointer;
+}
+.groupContainer{
+    margin: 5px 0;
+}
+.listaGrupos{
+    margin: 10px;
+    
+}
+.listaGrupos a{
+    color: inherit;
+}
+.listaGrupos p{
+    margin: 5px 0;
+    padding: 5px;
+    line-height: 1.5em;
+}
+.listaGrupos table{
+    margin: 0;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    cursor: pointer;
+}
+.listaGrupos table tr{
+    cursor: pointer;
+}
+
+.groupContainer > table tr td:first-child, #cabecalhoLista tr > th:first-child, .groupContainer > table tr td:last-child, #cabecalhoLista tr > th:last-child{
+    width: 2%;
+}
+.listaGrupos table td:nth-child(5), #cabecalhoLista th:nth-child(5){
+    width: 25%;
+}
+.listaGrupos table td:nth-child(2), #cabecalhoLista th:nth-child(2){
+    width: 20%;
+}
+.listaGrupos table td:nth-child(3), #cabecalhoLista th:nth-child(3){
+    width: 20%;
+}
+.listaGrupos td{ 
+    padding: 10px 5px;
+    color: #000;
+    text-align: center;
+}
+ 
+.groupContainer>div{
+    display: none;
+    margin: 0;
+    padding: 5px;
+    color: #fff;
+    box-shadow: inset 0 5px 5px rgba(0,0,0, 0.2);
+}
+.subCabecalho{
+    padding: 15px;
+    margin: 10px 0;
+    @include selectable(none);
+    background-color: rgba(255,255,255, 0.3);
+    border: 1px solid rgba(255,255,255, 0);
+    cursor: pointer;
+}
+.aberto:before{
+        display: inline-block;
+    content: '-';
+    width: 16px;
+    height: 14px;
+    line-height: 6px;
+    margin: 0 11px 0px 0;
+    padding: 3px;
+    text-align: center; 
+}
+.fechado:before{
+      display: inline-block;
+    content: '+';
+    width: 16px;
+    height: 14px;
+    line-height: 6px;
+    margin: 0 11px 0px 0;
+    padding: 3px;
+    text-align: center;
+    outline: 1px solid #fff;
+}
+.subTabela{
+    width: 98% !important;
+    margin: 5px auto !important;
+}
+.subTabela tr:nth-child(odd){
+    background-color: rgba(255,255,255, 0.05);
+}
+.subTabela td{
+    color: #fff;
+}
+.subTabela td:nth-child(1){
+    text-align: left;
+}
+.subTabela td:nth-child(2){
+    text-align: right;
+}
+.subTabela a{
+    color: #fff;
+    text-decoration: none;
+}
+.subTabela a:hover{
+    text-decoration: underline;
+}
+.botoesAlunos{
+    display: inline-block;
+    float: right;
+}
+
+.forms{
+    display: inline-block;
+    @include boxsizing(border-box);
+    width: calc(100% - 10px);
+    min-height: 30px;
+    margin: 5px 0;
+    vertical-align: top;
+    padding: 5px;
+    color: #000;
+    background-color: rgba(255,255,255, 0.5);
+    border-radius: 2px;
+}
+.formConfirm{
+    display: inline-block;
+    padding: 10px;
+    float: right;    
+}
+
+.postagem{
+    margin: 5px 0;
+    padding: 0;
+    vertical-align: top;
+    border-width: 4px;
+    border-style: none none solid none;
+    border-color: rgba(255,255,255, 0.1);
+}
+.postagem p{
+    text-align: center;
+    font-weight: normal;
+    vertical-align: top;
+}
+.postagem div:nth-child(3){
+    display: inline-block;
+    @include boxsizing(border-box);
+    float: left;
+    vertical-align: top;
+    padding: 0;
+    width: 49%;
+}
+.postagem div:nth-child(4){
+    display: inline-block;
+    @include boxsizing(border-box);
+    float: right;
+    vertical-align: top;
+    padding: 0;
+    width: 49%;
+}
+
+.postagem div:nth-child(5){
+    display: block;
+    min-height: 30px;
+    position:static;
+    clear:both;
+    border-bottom: 1px solid #ccc;
+}
+.postagem a{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+}
+.postagem a:hover{
+    text-decoration: underline;
+}
+
+#boxNotas{
+    text-align: center;
+}
+#boxNotas div:first-child{
+    text-align: left;
+}
+.caixaDeNotas{
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin: 0 auto;
+    padding-bottom: 10px;
+    text-align: center;
+   
+}
+.caixaDeNotasPost{
+    display: block;
+    
+    width:50%;
+    margin: 0 0 0 auto;
+    padding-bottom: 10px;
+    text-align: center;
+    clear:both;
+   
+}
+.caixaDeNotas label{
+    display: block;
+    text-align: center;
+}
+.boxContent button{
+cursor: pointer;
+    background: #f2f2f2;
+    border: medium none;
+    padding: 10px;
+}
+.caixaDeNotasPost label {
+  display: block;
+  padding: 5px;
+  text-align: center; }
+.caixaDeNotas input, .caixaDeNotasPost input{
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(255,255,255, 0.2);
+    border: 0 none;
+    
+}
+.caixaDeNotas input:focus, .caixaDeNotasPost input:focus{
+    outline: 0 none transparent;
+}
+.correcoes, .postagens{
+    display: inline-block;
+    @include boxsizing(border-box);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    
+}
+.correcoes li, .postagens li{
+    padding: 5px;
+    list-style-type: none;
+    background-color: rgba(255,255,255, 0.1);
+    border-color: rgba(255,255,255, 0.4);
+}
+.correcoes li:nth-child(even), .postagens li:nth-child(even){
+    background-color: rgba(255,255,255, 0.3);
+}
+
+.boxContent{
+    width: 98%;
+    margin: 5px auto;
+}
+.editSucesso{
+    display: none;
+    color: #0C5A0B;
+}
+.notasBots{
+    text-align: right;
+}
+.notasBots button{
+    width: 47%;
+    margin: 15px;
+    padding: 10px;
+    color: #000;
+    border: 0 none;
+    background-color: rgba(255,255,255, 0.85);
+    background-image: none;
+    cursor: pointer;
+}
+.notasBots button:focus{
+    outline: 0 none;
+}
+.boasVindas{
+    display: inline-block !important;
+    margin: 60px 10px 0 10px;
+    padding: 10px;
+    border-style: none none solid none;
+    border-width: 0 0 5px 0;
+    cursor: pointer;
+}
+.filtros button{
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    color: #fff;
+    background-color: #008f4b;
+    background-image: none;
+    border: 0 none;
+    float: right;
+    
+}
+.filtros input, .filtros select{
+    width: calc(100% - 10px);
+    padding: 5px;
+    background-color: rgba(255,255,255,1);
+    border-width: 2px;
+    border-style: none none solid none;
+    border-color: #ccc;
+}
+
+.pendente{
+    background-color: $corPendenteClaro;
+    border-color: $corPendenteEscuro;
+}
+.pendente > table tr td:first-child, .pendente > table tr td:last-child{
+    background-color: $corPendenteEscuro;
+}
+.pendente .groupDetalhes{
+    background-color: $corPendenteEscuro2;
+}
+.aguardandoAprovacao{
+    background-color: $corAguardandoAprovacaoClaro;
+    border-color: $corAguardandoAprovacaoEscuro;
+}
+.aguardandoAprovacao > table tr td:first-child, .aguardandoAprovacao > table tr td:last-child{
+    background-color: $corAguardandoAprovacaoEscuro;
+}
+.aguardandoAprovacao .groupDetalhes{
+    background-color: $corAguardandoAprovacaoEscuro2;
+}
+.aguardandoPostagem{
+    background-color: $corAguardandoPostagemClaro;
+    border-color: $corAguardandoPostagemEscuro;
+}
+.aguardandoPostagem > table tr td:first-child, .aguardandoPostagem > table tr td:last-child{
+    background-color: $corAguardandoPostagemEscuro;
+}
+.aguardandoPostagem .groupDetalhes{
+    background-color: $corAguardandoPostagemEscuro2;
+}
+.enviado{
+    background-color: $corEnviadoClaro;
+    border-color: $corEnviadoEscuro;
+}
+.enviado > table tr td:first-child, .enviado > table tr td:last-child{
+    background-color: $corEnviadoEscuro;
+}
+.enviado .groupDetalhes{
+    background-color: $corEnviadoEscuro2;
+}
+.emCorrecao{
+    background-color: $corEmCorrecaoClaro;
+    border-color: $corEmCorrecaoEscuro;
+}
+.emCorrecao > table tr td:first-child, .emCorrecao > table tr td:last-child{
+    background-color: $corEmCorrecaoEscuro;
+}
+.emCorrecao .groupDetalhes{
+    background-color: $corEmCorrecaoEscuro2;
+}
+.orientado{
+    background-color: $corOrientadoClaro;
+    border-color: $corOrientadoEscuro;
+}
+.orientado > table tr td:first-child, .orientado > table tr td:last-child{
+    background-color: $corOrientadoEscuro;
+}
+.orientado .groupDetalhes{
+    background-color: $corOrientadoEscuro2;
+}
+.aguardandoBanca{
+    background-color: $corAguardandoBancaClaro;
+    border-color: $corAguardandoBancaEscuro;
+}
+.aguardandoBanca > table tr td:first-child, .aguardandoBanca > table tr td:last-child{
+    background-color: $corAguardandoBancaEscuro;
+}
+.aguardandoBanca .groupDetalhes{
+    background-color: $corAguardandoBancaEscuro2;
+}
+.finalizado{
+    background-color: $corFinalizadoClaro;
+    border-color: $corFinalizadoEscuro;
+}
+.finalizado > table tr td:first-child, .finalizado > table tr td:last-child{
+    background-color: $corFinalizadoEscuro;
+}
+.finalizado .groupDetalhes{
+    background-color: $corFinalizadoEscuro2;
+}
+.pendente #boxFormularios, .finalizado #boxFormularios{
+    display: none;
+}
+.pendente #boxPostagens, .aguardandoAprovacao #boxPostagens, .aguardandoPostagem #boxPostagens, .finalizado #boxPostagens{
+    display: none;
+}
+.pendente #boxNotas, .aguardandoAprovacao #boxNotas{
+    display: none;
+}
+.finalizado .fecharNotas{
+    display: none;
+}
+.pendente .abrirNotas, .aguardandoAprovacao .abrirNotas, .aguardandoPostagem .abrirNotas, .emCorrecao .abrirNotas{
+    display: none;
+}

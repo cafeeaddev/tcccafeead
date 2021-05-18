@@ -1,0 +1,321 @@
+/* 
+    Created on : 21/01/2015, 11:27:01
+    Author     : CafeEAD
+*/
+
+/* PALETA */
+
+$fundoEscuro: #17ab16;
+$fundoEscuro2: #0c5a0b;
+$letraClara: #fff;
+$erro: #fa5569;
+
+.form h2{
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+    color: #555;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: normal;
+}
+.form>div>input, .form>div>select, .form>div>textarea{
+    width: calc(100% - 10px);
+    margin: 0 5px;
+}
+.form>div>input, .form>div>textarea, .form>div>select{
+    padding: 10px;
+    border-width: 0 0 1px 0;
+    border-style: none none solid none;
+    border-color: #000;
+    background-color: transparent;
+    
+}
+.form>div>input:focus, .form>div>textarea:focus, .form>div>select:focus{
+    border-color: $fundoEscuro;
+    outline: 0 none transparent;
+    
+}
+
+.form>div>select{
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
+.form>div>select option{
+    display: block;
+}
+.form>div>input[type='text'], .form>div>input[type='date'],  .form>div>select{
+    height: calc(100% - 20px);
+    margin: 20px auto auto auto;
+    font-size: 1em;
+}
+.form>div>input[type='text']:focus, .form>div>input[type='date']:focus, .form>div>select:focus{
+    font-size: 1.1em;
+}
+.form>div>input[type='text'] + label, .form>div>input[type='date'] + label, .form>div>select + label{
+    display: block;
+    position:relative;
+    top: -55px;
+    width: calc(100% - 10px);
+    margin: 0 5px;
+    color: #555;
+    text-align: left;
+    
+}
+.form>div>input[type='text']:focus + label, .form>div>input[type='date']:focus + label, .form>div>select:focus + label, .fakeFocus{
+    font-size: 0.9em;
+    color: $fundoEscuro !important;
+}
+
+.form>div>textarea{
+    height: calc(100% - 20px);
+    width: calc(100% - 10px);
+    margin: 0 5px;
+    font-size: 1em;
+}
+.form>div>textarea:focus{
+    font-size: 1.1em;
+}
+.form>div>textarea + label{
+    display: block;
+    position:relative;
+    top: -120px;
+    width: calc(100% - 10px);
+    margin: 0 5px;
+    color: #555;
+    text-align: left;
+}
+.form>div>textarea:focus + label{
+    font-size: 0.9em;
+    color: $fundoEscuro;
+}
+
+
+.form>div>input[type='checkbox'] + label{
+    display: inline-block;
+    height: 15px;
+    margin: 5px 20px;
+    vertical-align: middle;    
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+      transition: 0.1s;
+}
+.form>div>input[type='checkbox']{
+    display: none;
+    transition: 0.1s;
+}
+.form>div>input[type='checkbox'] + label:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin-left: -25px;
+    border: 1px solid #888;
+      transition: 0.1s;
+}
+
+.form>div>input[type='checkbox']:checked + label:before {
+    height: 5px;
+    margin: 0 auto auto -25px;
+    border-style: none none solid solid;
+    border-width: 3px;
+    border-color: green;
+    transform: rotate(-45deg);
+    transition: all 0.1s;
+}
+
+.form button{
+    display: inline-block;
+    padding: 20px;
+    background-color: #999; 
+    border: 0 none transparent;
+    cursor: pointer;
+}
+
+.form button:hover{
+    background-color: #333;
+}
+
+.fakeSelect{
+    display:none;
+    position:absolute;
+    max-height: 300px;
+    padding: 0;
+    margin: auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.6);
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.1s;
+    overflow: auto;
+}
+.fakeSelect li{
+    display: block;
+    list-style-type: none;
+    padding: 10px;
+    cursor:pointer
+}
+.fakeSelect li:hover{
+    background-color: #ddd;
+    
+}
+.fkSVisivel{
+    display: block;
+    margin-top: -55px;
+    opacity: 1;
+    
+}
+.postIt{
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin: 10px 5px 0 5px;
+    background-color:#f1f3ae;
+    outline: 2px solid #e9ec82;
+}
+.postIt div{
+    display: none;
+    opacity: 0;
+}
+.postItVisivel{
+    display: block !important;
+    opacity: 1 !important;
+ }
+.form .postagem{
+    display: block;
+    
+    margin: 5px;
+    padding: 0;
+    text-align: left;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #333;
+}
+.form .postagem>span{
+    display:inline-block;
+    padding: 10px;
+    margin: 0;
+    height: 40px;
+    vertical-align: top;
+}
+.form .postagem input{
+    position:relative;
+    width: 100%;
+    margin: 0;
+    color: $letraClara;
+    font-size: 1em;
+    border: 1px none #fff;
+    background-color: transparent;
+}
+.form .postagem input:focus{
+    outline: 0 none transparent;
+    margin-top: -0.05em;
+    border-style: none none solid none;
+    font-size: 1.1em;
+}
+.form .postagem>span:nth-child(1){
+    width: 80%;
+}
+.form .postagem>span:nth-child(2){
+    width: 20%;
+    padding: 10px;
+    text-align:right;
+    background-color: $fundoEscuro2;    
+}
+.form .postagem>div{
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    text-align:center;
+    background-color: $fundoEscuro2;
+    box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);
+}
+
+.ico16{
+    
+    font-size: 12px;
+    text-align: center;
+}
+.ico32{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+.icoExcluir{
+    background-image: url("./img/icones/excluirBranco.svg");
+    background-size: 100% 100%;width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+.icoConfig{
+    background-image: url("./img/icones/configBranco.svg");
+    background-size: 100% 100%;width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+.icoIncluir{
+    background-image: url("./img/icones/incluirBranco.svg");
+    background-color: #333;
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 50%;width: 15px;
+    height: 15px;
+    display: inline-block;
+}
+ 
+
+.form .obrigatorio + label span{
+    color: $erro;
+    font-weight: bold;
+}
+
+.form .erro{
+    border-color: $erro !important;
+    border-width: 2px !important;
+}
+.form .erro + label, .form .erro:focus + label{
+    color: $erro !important;
+    border-color: $erro !important;
+    border-width: 2px !important;
+}
+
+.form .avisoErro{
+    display: none;
+    border: 0 none;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 5px;
+    background-color: $erro;
+    color: $letraClara;
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.6);
+}
+
+::-webkit-input-placeholder {color: #ccc;}
+:-moz-placeholder {color: #ccc;}
+::-moz-placeholder {color: #ccc;}
+:-ms-input-placeholder {color: #ccc;}
+
+@media screen and (max-width: 400px) {
+    .postagem{
+        min-height: 80px;
+    }
+    .postagem>span:nth-child(1){
+         width: 100%;
+        clear:both;
+    }
+    .postagem>span:nth-child(2){
+        width:100%;
+        clear:both;
+    }
+}
