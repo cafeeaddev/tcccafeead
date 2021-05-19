@@ -125,10 +125,10 @@ if($isManager === true){
 
 
 $editingTeachers = get_role_users(4, $coursecontext);
-$teachers = get_role_users(4, $coursecontext);
+$teachers = get_role_users(3, $coursecontext);
 $students = get_role_users(5, $coursecontext);
-$coordinators = get_role_users(3, $systemcontext);
-$couserCoodinators = get_role_users(3, $coursecontext);
+$coordinators = get_role_users(1, $systemcontext);
+$couserCoodinators = get_role_users(1, $coursecontext);
 
 $isCoordinator = false;
 foreach($coordinators as $st){
