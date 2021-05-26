@@ -1,54 +1,47 @@
-The following steps should get you up and running with
-this module template code.
+TCC module for Moodle (http://moodle.org/)
+===============================================
 
-* DO NOT PANIC!
+The TCC module allows the exchange of work between groups of students and teachers,
+with status of corrections, mandatory forms, chat chat and notes for the posts.
 
-* Unzip the archive and read this file
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  S 
 
-* Rename the newmodule/ folder to the name of your module (eg "widget").
-  The module folder MUST be lower case and can't contain underscores. You should check the CVS contrib
-  area at http://cvs.moodle.org/contrib/plugins/mod/ to make sure that
-  your name is not already used by an other module. Registering the plugin
-  name @ http://moodle.org/plugins will secure it for you.
 
-* Edit all the files in this directory and its subdirectories and change
-  all the instances of the string "newmodule" to your module name
-  (eg "widget"). If you are using Linux, you can use the following command
-  $ find . -type f -exec sed -i 's/newmodule/widget/g' {} \;
+Contributions
+-------------
+Originally written by Café EAD
 
-  On a mac, use:
-  $ find . -type f -exec sed -i '' 's/newmodule/widget/g' {} \;
+Asked by Faculdade Educacional da Lapa - FAEL; 
 
-* Rename the file lang/en/newmodule.php to lang/en/widget.php
-  where "widget" is the name of your module
 
-* Rename all files in backup/moodle2/ folder by replacing "newmodule" with
-  the name of your module
+Download
+--------
+https://github.com/cafeeaddev/tcccafeead
 
-  On Linux you can perform this and previous steps by calling:
-  $ find . -depth -name '*newmodule*' -execdir bash -c 'mv -i "$1" "${1//newmodule/widget}"' bash {} \;
 
-* Place the widget folder into the /mod folder of the moodle
-  directory.
+Installation
+------------
+01) Make a folder called tcccafeead under /mod folder so that you have a /mod/tcccafeead folder.
 
-* Go to Settings > Site Administration > Development > XMLDB editor
-  and modify the module's tables.
-  Make sure, that the web server has write-access to the db/ folder.
-  You need at least one table, even if your module doesn't use it.
+02) Uncompress archive and copy the files into the /mod/tcccafeead folder.
 
-* Modify version.php and set the initial version of you module.
+03) Go to the /admin page and allow the module to be installed.
 
-* Visit Settings > Site Administration > Notifications, you should find
-  the module's tables successfully created
+Upgrading
+---------
+Before upgrading it is advisable that you test the upgrade first on a COPY of your production site, to make sure it works as you expect.
 
-* Go to Site Administration > Plugins > Activity modules > Manage activities
-  and you should find that this newmodule has been added to the list of
-  installed modules.
+### Backup important data ###
+There are three areas that should be backed up before any upgrade:
 
-* You may now proceed to run your own code in an attempt to develop
-  your module. You will probably want to modify mod_form.php and view.php
-  as a first step. Check db/access.php to add capabilities.
+* Moodle dataroot (For example, server/moodledata)
+* Moodle database (For example, your Postgres or MySQL database dump)
 
-We encourage you to share your code and experience - visit http://moodle.org
+### Version specific ###
 
-Good luck!
+#### TCCcafeead 3.8 ####
+You can only upgrade from Moodle 3.1 or later.
+
+ 
