@@ -236,7 +236,12 @@
 
 .postagem label {
   display: inline-block; }
+.grid.form .postagem input{
 
+    height: auto;
+    background: transparent;
+    border: transparent;
+}
 .postagem input {
       position: relative;
     width: 100%;
